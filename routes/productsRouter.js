@@ -3,7 +3,7 @@ const router = Router();
 const {homeProducts, updateProduct, deleteProduct} = require('../controllers/productsControllers');
 
 router.get('/', homeProducts);
-router.post('/updateProduct', updateProduct);
-router.post('/deleteProduct', deleteProduct);
+router.post('/products', updateProduct);
+router.post('/delete', deleteProduct);
 
 module.exports = router;

@@ -10,6 +10,8 @@ const PORT = process.env.PORT || 3000;
 
 const routerHome = require('./routes/homeRouter');
 const routerProducts = require('./routes/productsRouter');
+const routerUpdate = require('./routes/productsRouter');
+const routerDelete = require('./routes/productsRouter');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,8 +34,10 @@ conexion.connect(function (error) {
 })
 
 app.use('/', routerHome);
-app.use('/home', routerHome);
 app.use('/products', routerProducts);
+app.post('/products', routerUpdate);
+app.post('/delete', routerDelete);
+
 
 app.listen(PORT, ()=>{
     console.log(`Server running on Port = ${PORT}`);

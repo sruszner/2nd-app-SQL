@@ -1,14 +1,13 @@
-<form>
+<form action="/newProduct" method="post">
     <div class="container-lg p-3 mt-5">
         <div class="form-group m-3">
-            <label for="exampleInputEmail1">New product to add</label>
-            <input type="text" class="form-control" id="newProduct" aria-describedby="help"
-                placeholder="Enter a product name">
+            <label for="newProduct">New product to add</label>
+            <input type="text" class="form-control" id="newProduct" name="newProduct" aria-describedby="help" placeholder="Enter the product name">
 
         </div>
         <div class="form-group m-3">
-            <label for="price">Price</label>
-            <input type="text" class="form-control" id="price" placeholder="Price in u$">
+            <label for="stock">Stock</label>
+            <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock quantity">
         </div>
         <div class="m-3">
         <button type="submit" class="btn btn-primary">Submit</button>

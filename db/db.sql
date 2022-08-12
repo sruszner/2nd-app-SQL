@@ -7,7 +7,7 @@ use appsprint;
 create table products(
 	id int unsigned not null auto_increment,
     product varchar(50) not null,
-    price int unsigned not null,
+    stock int unsigned not null,
     primary key(id)
 );
-INSERT INTO products VALUES ( "1","AC/DC Module", "7.05"); 
+INSERT INTO products VALUES ( NULL,"AC/DC Module", "3500"); 

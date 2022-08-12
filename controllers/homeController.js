@@ -2,17 +2,25 @@
 const homeController = (req, res) =>{
     res.render('index');
 }
-const usPage = (req, res) =>{
-    res.send('Us page');
-}
-const subscribeEmail = (req, res) =>{
-    const {email, name} = req.body;
-    console.log(`Thank you ${name}, we save your email ${email}`);
-    res.send("Subscribed!!");
+
+const updateHome = (req, res) =>{
+    console.log(req.body);
+    const { newProduct, stock } = req.body;
+    console.log(newProduct);
+    console.log(stock);
+    let data = {
+        product: newProduct,
+        stock: stock
+    }
+    let sql = "INSERT INTO PRODUCTS SET ?";
+    let query = conexion.query(sql, data, (err, results) => {
+        if (err) throw err;
+    });
+
+    res.redirect('/');
 }
 
 module.exports = {
-    homeController, 
-    usPage, 
-    subscribeEmail
+    homeController,
+    updateHome
 };

@@ -1,45 +1,51 @@
-const {conexion} = require('../index');
 
-const homeProducts = (req, res) =>{
+const mysql = require('mysql2');
+
+conexion = mysql.createConnection({
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    port: process.env.PORTDB,
+    database: process.env.DATABASE
+})
+
+conexion.connect(function (error) {
+    if (error) throw error;
+    console.log("Conexion a la DB exitosa");
+})
+
+const homeProducts = (req, res) => {
     let sql = "SELECT * FROM PRODUCTS";
     let query = conexion.query(sql, (err, results) => {
         if (err) throw err;
         res.render('products', { tabla1: 'PRODUCTS', results })
     })
-    //res.render('products', { tabla1: 'PRODUCTS' })
 }
 
-const updateProduct = (req, res) =>{
+const updateProduct = (req, res) => {
     console.log(req.body);
     console.log("Actualizado");
-    let sql = "UPDATE PRODUCTS SET product='" + req.body.produ
-    ct + "', price='" + req.body.price + "' WHERE id=" + req.body.id;
+    let sql = "UPDATE PRODUCTS SET product='" + req.body.product + "', stock='" + req.body.stock + "' WHERE id=" + req.body.id;
     let query = conexion.query(sql, (err, results) => {
         if (err) throw err;
         console.log("Datos actualizados correctamente");
-        res.render('products', { tabla1: 'PRODUCTS' })
-    }) 
-    //console.log(req.body);
-    //console.log("Actualizado");
-    //res.render('products', { tabla1: 'ACTUALIZADO' })
+        res.redirect('products')
+    })
 }
 
-const deleteProduct = (req, res) =>{
+const deleteProduct = (req, res) => {
     console.log(req.body);
     console.log("Eliminado");
     let sql = "DELETE FROM PRODUCTS WHERE id=" + req.body.id;
     let query = conexion.query(sql, (err, results) => {
         if (err) throw err;
         console.log("Datos eliminados");
-        res.render('products', { tabla1: 'PRODUCTS' });
+        res.redirect('products');
     });
-    //console.log(req.body);
-    //console.log("Eliminado");
-    //res.render('products', { tabla1: 'ELIMINADO' });
 }
 
 module.exports = {
-    homeProducts, 
-    updateProduct, 
+    homeProducts,
+    updateProduct,
     deleteProduct
 };

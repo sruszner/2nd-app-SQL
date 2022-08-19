@@ -1,12 +1,11 @@
 
-
 const express = require('express');
 const app = express();
 const path = require('path');
 const dotenv = require('dotenv').config();
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 const routerHome = require('./routes/homeRouter');
 const routerHomeUpdate = require('./routes/homeRouter');

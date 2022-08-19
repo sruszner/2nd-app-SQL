@@ -1,47 +1,41 @@
 
-const mysql = require('mysql2');
-
-conexion = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    port: process.env.PORTDB,
-    database: process.env.DATABASE
-})
-
-conexion.connect(function (error) {
-    if (error) throw error;
-    console.log("Conexion a la DB exitosa");
-})
+const knex = require('../db/connection');
 
 const homeProducts = (req, res) => {
-    let sql = "SELECT * FROM PRODUCTS";
-    let query = conexion.query(sql, (err, results) => {
-        if (err) throw err;
-        res.render('products', { tabla1: 'PRODUCTS', results })
+    knex.select('*')
+    .from('products')
+    .then((results) => {
+        for (row of results) {
+            console.log(`${row['product']} - ${row['stock']}`);            
+        }
+        res.render('products', { tabla1: 'PRODUCTS', results});
+    })
+    .catch((err) => {
+        console.log(`${err}`);
     })
 }
 
 const updateProduct = (req, res) => {
-    console.log(req.body);
-    console.log("Actualizado");
-    let sql = "UPDATE PRODUCTS SET product='" + req.body.product + "', stock='" + req.body.stock + "' WHERE id=" + req.body.id;
-    let query = conexion.query(sql, (err, results) => {
-        if (err) throw err;
-        console.log("Datos actualizados correctamente");
-        res.redirect('products')
+    console.log(req.body)
+    const {product, stock, id} = req.body
+    knex('products').where({id: id})
+    .update({
+        product: req.body.product,
+        stock: req.body.stock
     })
+    .catch((err) => {
+        console.log(`${err}`);
+    })
+    res.redirect('products');
 }
 
 const deleteProduct = (req, res) => {
-    console.log(req.body);
-    console.log("Eliminado");
-    let sql = "DELETE FROM PRODUCTS WHERE id=" + req.body.id;
-    let query = conexion.query(sql, (err, results) => {
-        if (err) throw err;
-        console.log("Datos eliminados");
-        res.redirect('products');
-    });
+    knex('products').where({id: req.body.id})
+    .del()
+    .catch((err) => {
+        console.log(`${err}`);
+    })
+    res.redirect('products');
 }
 
 module.exports = {

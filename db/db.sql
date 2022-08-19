@@ -11,3 +11,18 @@ create table products(
     primary key(id)
 );
 INSERT INTO products VALUES ( NULL,"AC/DC Module", "3500"); 
+
+
+
+-- Conectar a HEROKU
+
+use heroku_2ff86f2f3b48745;
+
+create table products(
+	id int unsigned not null auto_increment,
+    product varchar(50) not null,
+    stock int unsigned not null,
+    primary key(id)
+);
+
+INSERT INTO products VALUES ( NULL,"AC/DC Module", "3500"); 

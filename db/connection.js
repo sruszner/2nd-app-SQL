@@ -2,11 +2,11 @@
 const knex = require('knex')({
     client: 'mysql2',
     connection: {
-        host : '127.0.0.1',
+        host : 'us-cdbr-east-06.cleardb.net',
         port : 3306,
-        user : 'root',
-        password : 'Leonalizayramon4455!',
-        database : 'appsprint'
+        user : 'b332c3bf24dbf1',
+        password : '87100b85',
+        database : 'heroku_2ff86f2f3b48745'
     }
 });
 

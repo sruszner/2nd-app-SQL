@@ -5,4 +5,4 @@ Cintia Fernandez
 Noelia Diaz
 
 
-# APP para control de stock y productos utilizando MONGODB con Mongoose.
+# APP para control de stock y productos utilizando MONGODB con Mongoose. Tambien cambiamos el administrador de paquetes por NPM

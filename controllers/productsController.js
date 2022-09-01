@@ -1,4 +1,4 @@
-const products = require('../db/userModel')
+const products = require('../db/productModel')
 
 const homeProducts = (req, res) => {
     products.find()

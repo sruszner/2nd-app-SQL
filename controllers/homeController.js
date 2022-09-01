@@ -1,4 +1,4 @@
-const productSchema = require('../db/userModel');
+const productSchema = require('../db/productModel');
 
 const homeController = (req, res) =>{
     res.render('index');

@@ -1,8 +1,5 @@
-# APP SPRINT GRUPO 9
-Sebastian Ruszner
-Constanza Rigoni
-Cintia Fernandez
-Noelia Diaz
+# Full Stack - UTN 
+2nd APP w/MySQL 
 
-
-# Es una app simple para cagrar productos y stock. Desde la pagina Products se puede consultar la lista completa, editarla y eliminar items. Trabajamos con un ORM (KNEX)
+# Basic Node.js APP development using MySQL CRUD with Knex.
+Yarn package manager
